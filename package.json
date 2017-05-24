@@ -1,6 +1,6 @@
 {
   "name": "steam-formatting",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Format strings in BBCode like Steam-Workshop and Community (See https://steamcommunity.com/comment/Announcement/formattinghelp)",
   "main": "index.js",
   "scripts": {
