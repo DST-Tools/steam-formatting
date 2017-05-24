@@ -10,13 +10,30 @@ module.exports = function BBCode(string, tag, attrs, value) {
 	let exists				= false;
 	
 	switch(tag) {
+		case 'u':
+		case 'i':
+		case 'b':
+		case 'strike':
+		case 'h1':
 		case 'url':
+		case 'spoiler':
+		case 'noparse':
+		case 'code':
+		case 'quote':
+		case 'olist':
+		case 'list':
 			exists = true;
 		break;
 	}
 	
 	if(exists) {
 		var Segment = require('../segments/' + tag.toUpperCase() + '.js');
-		return new Segment(string, value, parsed_attributes);
+		var result = new Segment(string, value, parsed_attributes);
+		
+		if(global.options.newLine) {
+			result = result.toString().replace(/\r?\n/g, '<br />')	
+		}
+		
+		return result;
 	}
 };

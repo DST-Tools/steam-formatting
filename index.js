@@ -7,25 +7,28 @@ global.options = {
 		whitelist:	false,
 		blank:		true
 	},
-	newLine:	true
+	newLine:	true,
+	format:	{
+		bold:		true,
+		italic:		true,
+		underline:	true,
+		strike:		true
+	},
+	spoiler:	true,
+	noparse:	true,
+	code:		true,
+	quote:		true,
+	list:		true
 };
 
 exports.setOptions = function setOptions(options) {
 	global.options = options;
 };
 
+exports.setOption = function setOption(option, value) {
+	global.options[option] = value;
+};
+
 exports.format = function format(content) {
-	let regex = new RegExp('\\[(\\w+)(?:[= ]([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'ig');
-	/*
-		\r\n		<br />
-		[LIST]		<ul>
-			[*]			<li>
-		[url=URL]TEXT[/url]		<a href="URL">TEXT</a>
-	*/
-	
-	if(global.options.newLine) {
-		content = content.replace(/\r?\n/g, '<br />')	
-	}
-	
-	return content.replace(regex, BBCodeParser.bind())
+	return content.replace(new RegExp('\\[(\\w+)(?:[= ]([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'ig'), BBCodeParser.bind())
 };

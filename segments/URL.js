@@ -8,7 +8,7 @@ module.exports = function URL(source, value, attributes) {
 	
 	this.__constructor = function __constructor(source, value, attributes) {
 		// Disable Links
-		if(typeof(global.options.links) == 'boolean' && !global.options.links === false) {
+		if(typeof(global.options.links) == 'boolean' && !global.options.links) {
 			_element = source;
 			return;
 		}
